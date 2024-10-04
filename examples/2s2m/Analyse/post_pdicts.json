@@ -1,0 +1,494 @@
+{
+    "p01": {
+        "expr": "tbabs*ztbabs*ppl",
+        "label": "tbabs.$n_H$",
+        "param": {
+            "val": 0.126,
+            "min": 0,
+            "max": 10,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p02": {
+        "expr": "tbabs*ztbabs*ppl",
+        "label": "ztbabs.$n_H$",
+        "param": {
+            "val": 0.392,
+            "min": 0,
+            "max": 10,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p03": {
+        "expr": "tbabs*ztbabs*ppl",
+        "label": "ppl.$\\alpha$",
+        "param": {
+            "val": -1.4856909526933397,
+            "min": -2,
+            "max": 2,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "frozen": false,
+        "mates": [
+            "p06"
+        ]
+    },
+    "p04": {
+        "expr": "tbabs*ztbabs*ppl",
+        "label": "ppl.log$E_{p}$",
+        "param": {
+            "val": 2.2609323539838186,
+            "min": 0,
+            "max": 4,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "frozen": false,
+        "mates": [
+            "p07"
+        ]
+    },
+    "p05": {
+        "expr": "tbabs*ztbabs*ppl",
+        "label": "ppl.log$A$",
+        "param": {
+            "val": -0.7125584817472994,
+            "min": -6,
+            "max": 5,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "frozen": false,
+        "mates": [
+            "p08"
+        ]
+    },
+    "p06": {
+        "expr": "ppl",
+        "label": "ppl.$\\alpha$",
+        "param": {
+            "val": -1.4856909526933397,
+            "min": -2,
+            "max": 2,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "frozen": false,
+        "mates": [
+            "p03"
+        ]
+    },
+    "p07": {
+        "expr": "ppl",
+        "label": "ppl.log$E_{p}$",
+        "param": {
+            "val": 2.2609323539838186,
+            "min": 0,
+            "max": 4,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "frozen": false,
+        "mates": [
+            "p04"
+        ]
+    },
+    "p08": {
+        "expr": "ppl",
+        "label": "ppl.log$A$",
+        "param": {
+            "val": -0.7125584817472994,
+            "min": -6,
+            "max": 5,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "frozen": false,
+        "mates": [
+            "p05"
+        ]
+    },
+    "p09": {
+        "expr": "LEIA",
+        "label": "rf@LEIA",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p10": {
+        "expr": "LEIA",
+        "label": "sf@LEIA",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p11": {
+        "expr": "LEIA",
+        "label": "bf@LEIA",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p12": {
+        "expr": "LEIA",
+        "label": "bvf@LEIA",
+        "param": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p13": {
+        "expr": "GBM-na",
+        "label": "rf@GBM-na",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p14": {
+        "expr": "GBM-na",
+        "label": "sf@GBM-na",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p15": {
+        "expr": "GBM-na",
+        "label": "bf@GBM-na",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p16": {
+        "expr": "GBM-na",
+        "label": "bvf@GBM-na",
+        "param": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p17": {
+        "expr": "GBM-b1",
+        "label": "rf@GBM-b1",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p18": {
+        "expr": "GBM-b1",
+        "label": "sf@GBM-b1",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p19": {
+        "expr": "GBM-b1",
+        "label": "bf@GBM-b1",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p20": {
+        "expr": "GBM-b1",
+        "label": "bvf@GBM-b1",
+        "param": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p21": {
+        "expr": "GECAM-BHG",
+        "label": "rf@GECAM-BHG",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p22": {
+        "expr": "GECAM-BHG",
+        "label": "sf@GECAM-BHG",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p23": {
+        "expr": "GECAM-BHG",
+        "label": "bf@GECAM-BHG",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p24": {
+        "expr": "GECAM-BHG",
+        "label": "bvf@GECAM-BHG",
+        "param": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p25": {
+        "expr": "GECAM-BLG",
+        "label": "rf@GECAM-BLG",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p26": {
+        "expr": "GECAM-BLG",
+        "label": "sf@GECAM-BLG",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p27": {
+        "expr": "GECAM-BLG",
+        "label": "bf@GECAM-BLG",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p28": {
+        "expr": "GECAM-BLG",
+        "label": "bvf@GECAM-BLG",
+        "param": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p29": {
+        "expr": "GECAM-CHG",
+        "label": "rf@GECAM-CHG",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p30": {
+        "expr": "GECAM-CHG",
+        "label": "sf@GECAM-CHG",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p31": {
+        "expr": "GECAM-CHG",
+        "label": "bf@GECAM-CHG",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p32": {
+        "expr": "GECAM-CHG",
+        "label": "bvf@GECAM-CHG",
+        "param": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    }
+}

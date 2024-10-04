@@ -1,0 +1,288 @@
+{
+    "GBM-na": {
+        "src": "./gbm/na_pha.fits",
+        "bkg": "./gbm/na_bak.fits",
+        "rsp": "./gbm/na_resp.rsp",
+        "specT": null,
+        "quality": null,
+        "group": {
+            "min_sigma": 3,
+            "max_bin": 10
+        },
+        "notice": [
+            8,
+            900
+        ],
+        "rsp_ii": null,
+        "src_ii": null,
+        "bkg_ii": null,
+        "rsp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "sexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bvar_factor": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "weight": 1,
+        "stat": "pgstat"
+    },
+    "GBM-b1": {
+        "src": "./gbm/b1_pha.fits",
+        "bkg": "./gbm/b1_bak.fits",
+        "rsp": "./gbm/b1_resp.rsp",
+        "specT": null,
+        "quality": null,
+        "group": {
+            "min_sigma": 3,
+            "max_bin": 10
+        },
+        "notice": [
+            300,
+            38000
+        ],
+        "rsp_ii": null,
+        "src_ii": null,
+        "bkg_ii": null,
+        "rsp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "sexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bvar_factor": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "weight": 1,
+        "stat": "pgstat"
+    },
+    "GECAM-BHG": {
+        "src": "./gecam/b/hg_pha.fits",
+        "bkg": "./gecam/b/hg_bak.fits",
+        "rsp": "./gecam/b/hg_resp.rsp",
+        "specT": null,
+        "quality": null,
+        "group": {
+            "min_sigma": 3,
+            "max_bin": 10
+        },
+        "notice": [
+            40,
+            350
+        ],
+        "rsp_ii": null,
+        "src_ii": null,
+        "bkg_ii": null,
+        "rsp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "sexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bvar_factor": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "weight": 1,
+        "stat": "pgstat"
+    },
+    "GECAM-BLG": {
+        "src": "./gecam/b/lg_pha.fits",
+        "bkg": "./gecam/b/lg_bak.fits",
+        "rsp": "./gecam/b/lg_resp.rsp",
+        "specT": null,
+        "quality": null,
+        "group": {
+            "min_sigma": 3,
+            "max_bin": 10
+        },
+        "notice": [
+            700,
+            6000
+        ],
+        "rsp_ii": null,
+        "src_ii": null,
+        "bkg_ii": null,
+        "rsp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "sexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bvar_factor": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "weight": 1,
+        "stat": "pgstat"
+    },
+    "GECAM-CHG": {
+        "src": "./gecam/c/gcg.src",
+        "bkg": "./gecam/c/gcg.bkg",
+        "rsp": "./gecam/c/gcg.rsp",
+        "specT": null,
+        "quality": null,
+        "group": {
+            "min_sigma": 3,
+            "max_bin": 10
+        },
+        "notice": [
+            [
+                15,
+                35
+            ],
+            [
+                42,
+                100
+            ]
+        ],
+        "rsp_ii": null,
+        "src_ii": 4,
+        "bkg_ii": 4,
+        "rsp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "sexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bvar_factor": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "weight": 1,
+        "stat": "pgstat"
+    }
+}

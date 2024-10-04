@@ -1,0 +1,10 @@
+{
+    "GBM-na": {
+        "min_sigma": 3,
+        "max_bin": 10
+    },
+    "GBM-b1": {
+        "min_sigma": 3,
+        "max_bin": 10
+    }
+}

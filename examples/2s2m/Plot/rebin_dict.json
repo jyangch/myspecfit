@@ -1,0 +1,26 @@
+{
+    "LEIA": {
+        "min_sigma": 0,
+        "max_bin": 1
+    },
+    "GBM-na": {
+        "min_sigma": 3,
+        "max_bin": 10
+    },
+    "GBM-b1": {
+        "min_sigma": 3,
+        "max_bin": 10
+    },
+    "GECAM-BHG": {
+        "min_sigma": 3,
+        "max_bin": 10
+    },
+    "GECAM-BLG": {
+        "min_sigma": 3,
+        "max_bin": 10
+    },
+    "GECAM-CHG": {
+        "min_sigma": 3,
+        "max_bin": 10
+    }
+}

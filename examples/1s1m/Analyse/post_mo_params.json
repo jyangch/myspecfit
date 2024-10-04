@@ -1,0 +1,31 @@
+[
+    {
+        "ppl.$\\alpha$": {
+            "val": -1.5623179860796994,
+            "min": -2,
+            "max": 2,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "ppl.log$E_{p}$": {
+            "val": 2.3309791052119904,
+            "min": 0,
+            "max": 4,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "ppl.log$A$": {
+            "val": -0.770616091336823,
+            "min": -6,
+            "max": 5,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        }
+    }
+]

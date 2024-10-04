@@ -1,0 +1,167 @@
+{
+    "p01": {
+        "expr": "ppl",
+        "label": "ppl.$\\alpha$",
+        "param": {
+            "val": -1,
+            "min": -2,
+            "max": 2,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "frozen": false,
+        "mates": []
+    },
+    "p02": {
+        "expr": "ppl",
+        "label": "ppl.log$E_{p}$",
+        "param": {
+            "val": 2,
+            "min": 0,
+            "max": 4,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "frozen": false,
+        "mates": []
+    },
+    "p03": {
+        "expr": "ppl",
+        "label": "ppl.log$A$",
+        "param": {
+            "val": -1,
+            "min": -6,
+            "max": 5,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "frozen": false,
+        "mates": []
+    },
+    "p04": {
+        "expr": "GBM-na",
+        "label": "rf@GBM-na",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p05": {
+        "expr": "GBM-na",
+        "label": "sf@GBM-na",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p06": {
+        "expr": "GBM-na",
+        "label": "bf@GBM-na",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p07": {
+        "expr": "GBM-na",
+        "label": "bvf@GBM-na",
+        "param": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p08": {
+        "expr": "GBM-b1",
+        "label": "rf@GBM-b1",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p09": {
+        "expr": "GBM-b1",
+        "label": "sf@GBM-b1",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p10": {
+        "expr": "GBM-b1",
+        "label": "bf@GBM-b1",
+        "param": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    },
+    "p11": {
+        "expr": "GBM-b1",
+        "label": "bvf@GBM-b1",
+        "param": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "frozen": true,
+        "mates": []
+    }
+}

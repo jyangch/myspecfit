@@ -1,0 +1,47 @@
+{
+    "tbabs.$n_H$": {
+        "val": 0.126,
+        "min": 0,
+        "max": 10,
+        "comment": null,
+        "scale": "linear",
+        "unit": 1,
+        "frozen": true
+    },
+    "ztbabs.$n_H$": {
+        "val": 0.392,
+        "min": 0,
+        "max": 10,
+        "comment": null,
+        "scale": "linear",
+        "unit": 1,
+        "frozen": true
+    },
+    "ppl.$\\alpha$": {
+        "val": -1,
+        "min": -2,
+        "max": 2,
+        "comment": null,
+        "scale": "linear",
+        "unit": 1,
+        "frozen": false
+    },
+    "ppl.log$E_{p}$": {
+        "val": 2,
+        "min": 0,
+        "max": 4,
+        "comment": null,
+        "scale": "linear",
+        "unit": 1,
+        "frozen": false
+    },
+    "ppl.log$A$": {
+        "val": -1,
+        "min": -6,
+        "max": 5,
+        "comment": null,
+        "scale": "linear",
+        "unit": 1,
+        "frozen": false
+    }
+}

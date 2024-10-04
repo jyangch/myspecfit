@@ -1,0 +1,16 @@
+numpy~=1.25.2
+matplotlib~=3.7.2
+numba~=0.59.1
+scipy~=1.11.2
+pytest~=7.4.0
+pandas~=2.1.0
+streamlit~=1.32.2
+emcee~=3.1.4
+pymultinest~=2.12
+astropy~=5.3.2
+toml~=0.10.2
+astromodels~=2.4.1
+plotly~=5.21.0
+corner~=2.2.2
+st-pages~=0.4.5
+streamlit_code_editor~=0.1.12

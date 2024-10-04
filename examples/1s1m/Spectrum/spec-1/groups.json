@@ -1,0 +1,108 @@
+{
+    "GBM-na": {
+        "src": "./gbm/na_pha.fits",
+        "bkg": "./gbm/na_bak.fits",
+        "rsp": "./gbm/na_resp.rsp",
+        "specT": null,
+        "quality": null,
+        "group": null,
+        "notice": [
+            8,
+            900
+        ],
+        "rsp_ii": null,
+        "src_ii": null,
+        "bkg_ii": null,
+        "rsp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "sexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bvar_factor": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "weight": 1,
+        "stat": "pgstat"
+    },
+    "GBM-b1": {
+        "src": "./gbm/b1_pha.fits",
+        "bkg": "./gbm/b1_bak.fits",
+        "rsp": "./gbm/b1_resp.rsp",
+        "specT": null,
+        "quality": null,
+        "group": null,
+        "notice": [
+            300,
+            38000
+        ],
+        "rsp_ii": null,
+        "src_ii": null,
+        "bkg_ii": null,
+        "rsp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "sexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bvar_factor": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "weight": 1,
+        "stat": "pgstat"
+    }
+}

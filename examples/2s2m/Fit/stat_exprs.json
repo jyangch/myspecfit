@@ -1,0 +1,8 @@
+{
+    "LEIA": "cstat",
+    "GBM-na": "pgstat",
+    "GBM-b1": "pgstat",
+    "GECAM-BHG": "pgstat",
+    "GECAM-BLG": "pgstat",
+    "GECAM-CHG": "pgstat"
+}

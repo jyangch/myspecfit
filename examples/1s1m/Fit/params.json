@@ -1,0 +1,47 @@
+{
+    "p01": {
+        "expr": "ppl",
+        "label": "ppl.$\\alpha$",
+        "param": {
+            "val": -1,
+            "min": -2,
+            "max": 2,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "frozen": false,
+        "mates": []
+    },
+    "p02": {
+        "expr": "ppl",
+        "label": "ppl.log$E_{p}$",
+        "param": {
+            "val": 2,
+            "min": 0,
+            "max": 4,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "frozen": false,
+        "mates": []
+    },
+    "p03": {
+        "expr": "ppl",
+        "label": "ppl.log$A$",
+        "param": {
+            "val": -1,
+            "min": -6,
+            "max": 5,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "frozen": false,
+        "mates": []
+    }
+}

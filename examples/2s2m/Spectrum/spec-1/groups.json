@@ -1,0 +1,58 @@
+{
+    "LEIA": {
+        "src": "./leia/grb.src",
+        "bkg": "./leia/grb.bkg",
+        "rmf": "./leia/grb.rmf",
+        "arf": "./leia/grb.arf",
+        "specT": null,
+        "quality": null,
+        "group": {
+            "min_evt": 10
+        },
+        "notice": [
+            0.5,
+            4.0
+        ],
+        "rsp_ii": null,
+        "src_ii": null,
+        "bkg_ii": null,
+        "rsp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "sexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bexp_factor": {
+            "val": 1,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "bvar_factor": {
+            "val": 0,
+            "min": null,
+            "max": null,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": true
+        },
+        "weight": 1,
+        "stat": "cstat"
+    }
+}

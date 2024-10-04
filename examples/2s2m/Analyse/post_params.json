@@ -1,0 +1,53 @@
+{
+    "p03": {
+        "expr": "tbabs*ztbabs*ppl",
+        "label": "ppl.$\\alpha$",
+        "param": {
+            "val": -1.4856909526933397,
+            "min": -2,
+            "max": 2,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "frozen": false,
+        "mates": [
+            "p06"
+        ]
+    },
+    "p04": {
+        "expr": "tbabs*ztbabs*ppl",
+        "label": "ppl.log$E_{p}$",
+        "param": {
+            "val": 2.2609323539838186,
+            "min": 0,
+            "max": 4,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "frozen": false,
+        "mates": [
+            "p07"
+        ]
+    },
+    "p05": {
+        "expr": "tbabs*ztbabs*ppl",
+        "label": "ppl.log$A$",
+        "param": {
+            "val": -0.7125584817472994,
+            "min": -6,
+            "max": 5,
+            "comment": null,
+            "scale": "linear",
+            "unit": 1,
+            "frozen": false
+        },
+        "frozen": false,
+        "mates": [
+            "p08"
+        ]
+    }
+}
