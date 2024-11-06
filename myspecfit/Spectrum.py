@@ -407,8 +407,8 @@ class Spectrum(object):
             self.E_coord.extend(rsp.Eval_Energy)
             self.T_coord.extend([rsp.specT] * num)
             self.ET_level.extend(rsp.Eval_Level[1:])
-        self.E_coord = np.array(self.E_coord, dtype=np.float128)
-        self.T_coord = np.array(self.T_coord, dtype=np.float128)
+        self.E_coord = np.array(self.E_coord, dtype=np.float64)
+        self.T_coord = np.array(self.T_coord, dtype=np.float64)
         self.ET_level = np.array(self.ET_level, dtype=int)
         self.ET_start = np.cumsum(self.ET_level)[:-1]
         self.ET_stop = np.cumsum(self.ET_level)[1:]
@@ -426,9 +426,9 @@ class Spectrum(object):
             self.T_patch.extend([rsp.specT] * num)
             self.ET_width.extend(rsp.EnerWidth)
             self.ET_number.append(num)
-        self.E_patch = np.array(self.E_patch, dtype=np.float128)
-        self.T_patch = np.array(self.T_patch, dtype=np.float128)
-        self.ET_width = np.array(self.ET_width, dtype=np.float128)
+        self.E_patch = np.array(self.E_patch, dtype=np.float64)
+        self.T_patch = np.array(self.T_patch, dtype=np.float64)
+        self.ET_width = np.array(self.ET_width, dtype=np.float64)
         self.ET_Start = np.cumsum(self.ET_number)[:-1]
         self.ET_Stop = np.cumsum(self.ET_number)[1:]
 

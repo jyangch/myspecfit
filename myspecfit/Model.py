@@ -148,8 +148,9 @@ class Model(object):
         self.mdicts = OrderedDict()
         for ex, fu in self.fdicts.items():
             if 'phabs' in ex or 'tbabs' in ex:
-                # self.mdicts[ex] = np.array(fu(self.spectrum.E_patch, self.spectrum.T_patch))
-                self.mdicts[ex] = np.array(fu(self.spectrum.E_coord, self.spectrum.T_coord))
+                eval_mo_ = fu(self.spectrum.E_coord, self.spectrum.T_coord)
+                eval_mo = [np.mean(eval_mo_[i:j]) for (i, j) in zip(self.spectrum.ET_start, self.spectrum.ET_stop)]
+                self.mdicts[ex] = np.array(eval_mo)
             else:
                 eval_mo_ = fu(self.spectrum.E_coord, self.spectrum.T_coord)
                 eval_mo = [np.mean(eval_mo_[i:j]) for (i, j) in zip(self.spectrum.ET_start, self.spectrum.ET_stop)]

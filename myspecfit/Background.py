@@ -39,18 +39,18 @@ class Background(object):
             assert (self.maxDetChans - self.minDetChans + 1) == self.numDetChans, 'please check header!'
 
         self.ChanIndex = self.specData['CHANNEL'].astype(int)
-        self.BkgExpo = np.float128(self.specExt.header['EXPOSURE'])
+        self.BkgExpo = np.float64(self.specExt.header['EXPOSURE'])
         try:
-            self.BkgCounts = self.specData['COUNTS'].astype(np.float128)
+            self.BkgCounts = self.specData['COUNTS'].astype(np.float64)
             try:
-                self.BkgErr = self.specData['STAT_ERR'].astype(np.float128)
+                self.BkgErr = self.specData['STAT_ERR'].astype(np.float64)
             except KeyError:
                 warnings.warn('%s:\nbkg error is not specified and will default to Poisson error'%bkg_file)
                 self.BkgErr = np.sqrt(self.BkgCounts)
         except KeyError:
-            self.BkgCounts = self.specData['RATE'].astype(np.float128) * self.BkgExpo
+            self.BkgCounts = self.specData['RATE'].astype(np.float64) * self.BkgExpo
             try:
-                self.BkgErr = self.specData['STAT_ERR'].astype(np.float128) * self.BkgExpo
+                self.BkgErr = self.specData['STAT_ERR'].astype(np.float64) * self.BkgExpo
             except KeyError:
                 warnings.warn('%s:\nbkg error is not specified and will default to Poisson error'%bkg_file)
                 self.BkgErr = np.sqrt(self.BkgCounts)
@@ -79,18 +79,18 @@ class Background(object):
 
         self.specData = self.specExt.data
 
-        self.BkgExpo = self.specData['EXPOSURE'][ii].astype(np.float128)
+        self.BkgExpo = self.specData['EXPOSURE'][ii].astype(np.float64)
         try:
-            self.BkgCounts = self.specData['COUNTS'][ii].astype(np.float128)
+            self.BkgCounts = self.specData['COUNTS'][ii].astype(np.float64)
             try:
-                self.BkgErr = self.specData['STAT_ERR'][ii].astype(np.float128)
+                self.BkgErr = self.specData['STAT_ERR'][ii].astype(np.float64)
             except KeyError:
                 warnings.warn('%s:%d\nbkg error is not specified and will default to Poisson error'%(bkg_file, ii))
                 self.BkgErr = np.sqrt(self.BkgCounts)
         except KeyError:
-            self.BkgCounts = self.specData['RATE'][ii].astype(np.float128) * self.BkgExpo
+            self.BkgCounts = self.specData['RATE'][ii].astype(np.float64) * self.BkgExpo
             try:
-                self.BkgErr = self.specData['STAT_ERR'][ii].astype(np.float128) * self.BkgExpo
+                self.BkgErr = self.specData['STAT_ERR'][ii].astype(np.float64) * self.BkgExpo
             except KeyError:
                 warnings.warn('%s:%d\nbkg error is not specified and will default to Poisson error'%(bkg_file, ii))
                 self.BkgErr = np.sqrt(self.BkgCounts)
@@ -146,8 +146,8 @@ class Background(object):
                     self.New_BkgCounts[-1] += self.BkgCounts[i]
                     self.New_BkgErr[-1] = np.sqrt(self.New_BkgErr[-1] ** 2 + self.BkgErr[i] ** 2)
             self.ChanIndex = np.array(self.New_ChanIndex).astype(int)
-            self.BkgCounts = np.float128(self.New_BkgCounts)
-            self.BkgErr = np.float128(self.New_BkgErr)
+            self.BkgCounts = np.float64(self.New_BkgCounts)
+            self.BkgErr = np.float64(self.New_BkgErr)
 
             self.minDetChans = min(self.ChanIndex)
             self.maxDetChans = max(self.ChanIndex)

@@ -122,11 +122,7 @@ class Response(object):
         else:
             self.nchan = [[nc] for nc in self.matData.field(4)]
             
-        min_fchan = min([fc for fcs in self.fchan for fc in fcs])
-        self.chan_off = int(min_fchan - self.minDetChans)
-
-        # self.fchan = self.matData.field(3).astype(int)
-        # self.nchan = self.matData.field(4).astype(int)
+        self.mchan = int(self.matHeader['TLMIN4'])
 
         self.matrix = self.matData.field(5)
 
@@ -144,32 +140,19 @@ class Response(object):
         self.create_eval_energy()
 
 
-    # def construct_drm(self):
-    #     for fc, nc, i in zip(self.fchan, self.nchan, range(self.numEnerBins)):
-    #         assert (fc + nc -1) <= self.numDetChans, \
-    #             'The index of channel will overflow!'
-    #         if fc == 0:
-    #             index = [False] * len(self.ChanIndex); index[fc: fc + nc] = [True] * nc
-    #         else:
-    #             index = [False] * len(self.ChanIndex); index[fc - 1: fc + nc - 1] = [True] * nc
-
-    #         self.drm[i, index] = self.matrix[i][0 : nc]
-    #     self.drm = np.float128(self.drm) * self.specresp.reshape([-1, 1])
-
-
     def construct_drm(self):
         for fc, nc, i in zip(self.fchan, self.nchan, range(self.numEnerBins)):
             idx = []
             for fc_i, nc_i in zip(fc, nc):
-                fc_i = int(fc_i - self.chan_off)
+                fc_i = int(fc_i)
                 nc_i = int(nc_i)
                 tc_i = fc_i + nc_i
                 
-                idx_i = np.where((self.ChanIndex >= fc_i) & (self.ChanIndex < tc_i))[0].tolist()
+                idx_i = np.arange(fc_i - self.mchan, tc_i - self.mchan).tolist()
                 idx = idx + idx_i
 
             self.drm[i, idx] = self.matrix[i][:]
-        self.drm = np.float128(self.drm) * self.specresp.reshape([-1, 1])
+        self.drm = np.float64(self.drm) * self.specresp.reshape([-1, 1])
 
 
     def qualifying(self, Qual, Notc):
@@ -225,11 +208,11 @@ class Response(object):
                     NewChIdx += 1
                     self.New_ChanIndex.append(NewChIdx)
                     self.New_ChanBins.append(list(self.ChanBins[i]))
-                    self.New_Drm.append(self.drm[:, i])
+                    self.New_Drm.append(self.drm[:, i].copy())
                     self.New_Qualified_Notice_ID.append([self.Qualified_Notice_ID[i]])
                 elif flag == -1:
                     self.New_ChanBins[-1][-1] = self.ChanBins[i][-1]
-                    self.New_Drm[-1] += self.drm[:, i]
+                    self.New_Drm[-1] += self.drm[:, i].copy()
                     self.New_Qualified_Notice_ID[-1] += [self.Qualified_Notice_ID[i]]
             self.ChanIndex = np.array(self.New_ChanIndex).astype(int)
             self.minDetChans = self.ChanIndex[0]
@@ -241,7 +224,7 @@ class Response(object):
             self.ChanWidth = [cbin[1] - cbin[0] for cbin in self.ChanBins]
             self.ChanCenter = [np.sqrt(cbin[0] * cbin[1]) for cbin in self.ChanBins]
 
-            self.drm = np.float128(np.column_stack(self.New_Drm))
+            self.drm = np.float64(np.column_stack(self.New_Drm))
             self.Qualified_Notice_ID = [np.all(ids) for ids in self.New_Qualified_Notice_ID]
 
 
@@ -255,39 +238,28 @@ class Response(object):
 
 
     def create_eval_energy(self):
-        resFrac511 = 0.2  # lifted from BATSE!
-        resExp = -0.15  # lifted from BATSE!
+        # resFrac511 = 0.2  # lifted from BATSE!
+        # resExp = -0.15  # lifted from BATSE!
 
-        self.EnerCenter = np.array(self.EnerCenter, dtype=np.float128)
-        self.EnerWidth = np.array(self.EnerWidth, dtype=np.float128)
+        self.EnerCenter = np.array(self.EnerCenter, dtype=np.float64)
+        self.EnerWidth = np.array(self.EnerWidth, dtype=np.float64)
 
-        resFrac = resFrac511 * (self.EnerCenter / 511.) ** resExp
-        resFWHM = self.EnerCenter * resFrac
+        # resFrac = resFrac511 * (self.EnerCenter / 511.) ** resExp
+        # resFWHM = self.EnerCenter * resFrac
 
-        low_eval_index = self.EnerWidth < resFWHM / 2.
-        med_eval_index = (self.EnerWidth >= resFWHM / 2.) * (self.EnerWidth / 2. < resFWHM / 3.)
-        high_eval_index = self.EnerWidth / 2. >= resFWHM / 3.
+        # low_eval_index = self.EnerWidth < resFWHM / 2.
+        # med_eval_index = (self.EnerWidth >= resFWHM / 2.) * (self.EnerWidth / 2. < resFWHM / 3.)
+        # high_eval_index = self.EnerWidth / 2. >= resFWHM / 3.
 
         for i in range(self.numEnerBins):
             x = self.EnerCenter[i]
             y = self.EnerWidth[i]
 
-            if low_eval_index[i]:
-                self.Eval_Energy.extend([x])
-                self.Eval_Level.append(1)
-                self.Eval_dE.extend([[0.5 * y, 0.5 * y]])
-            elif med_eval_index[i]:
-                self.Eval_Energy.extend([x - 0.33 * y, x , x + 0.33 * y])
-                self.Eval_Level.append(3)
-                self.Eval_dE.extend([[0.17 * y, 0.83 * y], [0.5 * y, 0.5 * y], [0.83 * y, 0.17 * y]])
-            elif high_eval_index[i]:
-                self.Eval_Energy.extend([x - 0.5 * y, x - 0.33 * y, x - 0.17 * y, x,
-                                         x + 0.17 * y, x + 0.33 * y, x + 0.5 * y])
-                self.Eval_Level.append(7)
-                self.Eval_dE.extend([[0, y], [0.17 * y, 0.83 * y], [0.33 * y, 0.67 * y], [0.5 * y, 0.5 * y],
-                                          [0.67 * y, 0.33 * y], [0.83 * y, 0.17 * y], [y, 0]])
+            self.Eval_Energy.extend([x - 0.33 * y, x , x + 0.33 * y])
+            self.Eval_Level.append(3)
+            self.Eval_dE.extend([[0.17 * y, 0.83 * y], [0.5 * y, 0.5 * y], [0.83 * y, 0.17 * y]])
 
-        self.Eval_Energy = np.array(self.Eval_Energy, dtype=np.float128)
-        self.Eval_dE = np.array(self.Eval_dE, dtype=np.float128)
+        self.Eval_Energy = np.array(self.Eval_Energy, dtype=np.float64)
+        self.Eval_dE = np.array(self.Eval_dE, dtype=np.float64)
         self.Eval_Start = np.cumsum(self.Eval_Level)[:-1]
         self.Eval_Stop = np.cumsum(self.Eval_Level)[1:]

@@ -298,7 +298,7 @@ class Fit(object):
 
 
     def log_ll_multinest(self, cube, ndim, nparams):
-        cube = np.array([cube[i] for i in range(ndim)], dtype=np.float128)
+        cube = np.array([cube[i] for i in range(ndim)], dtype=np.float64)
         for pi, pv in zip(self.pids, cube): self.params[pi]['param'].val = pv
         self.mo_chRate = [rate for mo in self.mos for rate in mo.conv_drm()]
 
@@ -373,7 +373,7 @@ class Fit(object):
 
 
     def log_ll_emcee(self, theta):
-        theta = np.array(theta, dtype=np.float128)
+        theta = np.array(theta, dtype=np.float64)
         for pi, pv in zip(self.pids, theta): self.params[pi]['param'].val = pv
         self.mo_chRate = [rate for mo in self.mos for rate in mo.conv_drm()]
 

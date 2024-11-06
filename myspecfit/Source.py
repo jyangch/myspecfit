@@ -39,18 +39,18 @@ class Source(object):
             assert (self.maxDetChans - self.minDetChans + 1) == self.numDetChans, 'please check header!'
 
         self.ChanIndex = self.specData['CHANNEL'].astype(int)
-        self.SrcExpo = np.float128(self.specExt.header['EXPOSURE'])
+        self.SrcExpo = np.float64(self.specExt.header['EXPOSURE'])
         try:
-            self.SrcCounts = self.specData['COUNTS'].astype(np.float128)
+            self.SrcCounts = self.specData['COUNTS'].astype(np.float64)
             try:
-                self.SrcErr = self.specData['STAT_ERR'].astype(np.float128)
+                self.SrcErr = self.specData['STAT_ERR'].astype(np.float64)
             except KeyError:
                 warnings.warn('%s:\nsrc error is not specified and will default to Poisson error'%src_file)
                 self.SrcErr = np.sqrt(self.SrcCounts)
         except KeyError:
-            self.SrcCounts = self.specData['RATE'].astype(np.float128) * self.SrcExpo
+            self.SrcCounts = self.specData['RATE'].astype(np.float64) * self.SrcExpo
             try:
-                self.SrcErr = self.specData['STAT_ERR'].astype(np.float128) * self.SrcExpo
+                self.SrcErr = self.specData['STAT_ERR'].astype(np.float64) * self.SrcExpo
             except KeyError:
                 warnings.warn('%s:\nsrc error is not specified and will default to Poisson error'%src_file)
                 self.SrcErr = np.sqrt(self.SrcCounts)
@@ -89,18 +89,18 @@ class Source(object):
 
         self.specData = self.specExt.data
 
-        self.SrcExpo = self.specData['EXPOSURE'][ii].astype(np.float128)
+        self.SrcExpo = self.specData['EXPOSURE'][ii].astype(np.float64)
         try:
-            self.SrcCounts = self.specData['COUNTS'][ii].astype(np.float128)
+            self.SrcCounts = self.specData['COUNTS'][ii].astype(np.float64)
             try:
-                self.SrcErr = self.specData['STAT_ERR'][ii].astype(np.float128)
+                self.SrcErr = self.specData['STAT_ERR'][ii].astype(np.float64)
             except KeyError:
                 warnings.warn('%s:%d\nsrc error is not specified and will default to Poisson error'%(src_file, ii))
                 self.SrcErr = np.sqrt(self.SrcCounts)
         except KeyError:
-            self.SrcCounts = self.specData['RATE'][ii].astype(np.float128) * self.SrcExpo
+            self.SrcCounts = self.specData['RATE'][ii].astype(np.float64) * self.SrcExpo
             try:
-                self.SrcErr = self.specData['STAT_ERR'][ii].astype(np.float128) * self.SrcExpo
+                self.SrcErr = self.specData['STAT_ERR'][ii].astype(np.float64) * self.SrcExpo
             except KeyError:
                 warnings.warn('%s:%d\nsrc error is not specified and will default to Poisson error'%(src_file, ii))
                 self.SrcErr = np.sqrt(self.SrcCounts)
@@ -160,8 +160,8 @@ class Source(object):
                     self.New_SrcCounts[-1] += self.SrcCounts[i]
                     self.New_SrcErr[-1] = np.sqrt(self.New_SrcErr[-1] ** 2 + self.SrcErr[i] ** 2)
             self.ChanIndex = np.array(self.New_ChanIndex).astype(int)
-            self.SrcCounts = np.float128(self.New_SrcCounts)
-            self.SrcErr = np.float128(self.New_SrcErr)
+            self.SrcCounts = np.float64(self.New_SrcCounts)
+            self.SrcErr = np.float64(self.New_SrcErr)
 
             self.minDetChans = min(self.ChanIndex)
             self.maxDetChans = max(self.ChanIndex)
