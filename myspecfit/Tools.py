@@ -332,7 +332,8 @@ def flag_grouping(
             else:
                 raise AttributeError(f'unsupported stat: {stat}')
             
-            evt = cs - cb * alpha
+            # evt = cs - cb * alpha
+            evt = cs
             
             if ((sigma >= min_sigma) and (evt >= min_evt)) or cp == max_bin:
                 nowbin = False
