@@ -225,10 +225,10 @@ class Analyse(object):
                   open(self.savepath + 'bkg_NchCounts.json', 'w'), indent=4, cls=JsonEncoder)
         json.dump({ex: val for ex, val in zip(self.spec_exprs, self.fobj.mo_NchRate)}, 
                   open(self.savepath + 'mo_NchRate.json', 'w'), indent=4, cls=JsonEncoder)
-        json.dump({ex: val for ex, val in zip(self.spec_exprs, self.fobj.src_expo)}, 
-                  open(self.savepath + 'src_expo.json', 'w'), indent=4, cls=JsonEncoder)
-        json.dump({ex: val for ex, val in zip(self.spec_exprs, self.fobj.bkg_expo)}, 
-                  open(self.savepath + 'bkg_expo.json', 'w'), indent=4, cls=JsonEncoder)
+        json.dump({ex: val for ex, val in zip(self.spec_exprs, self.fobj.src_eff)}, 
+                  open(self.savepath + 'src_eff.json', 'w'), indent=4, cls=JsonEncoder)
+        json.dump({ex: val for ex, val in zip(self.spec_exprs, self.fobj.bkg_eff)}, 
+                  open(self.savepath + 'bkg_eff.json', 'w'), indent=4, cls=JsonEncoder)
         json.dump({ex: val for ex, val in zip(self.spec_exprs, self.fobj.bkg_NchErr)}, 
                   open(self.savepath + 'bkg_NchErr.json', 'w'), indent=4, cls=JsonEncoder)
         json.dump({ex: val for ex, val in zip(self.spec_exprs, self.fobj.NchIndex)}, 

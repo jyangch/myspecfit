@@ -173,14 +173,14 @@ class Plot(object):
         self.NchIndex = self.fobj.NchIndex
         self.stat_exprs = self.fobj.stat_exprs
 
-        self.sexpo = self.fobj.src_expo
-        self.bexpo = self.fobj.bkg_expo
+        self.seff = self.fobj.src_eff
+        self.beff = self.fobj.bkg_eff
 
         self.schCounts = self.fobj.src_NchCounts
         self.bchCounts = self.fobj.bkg_NchCounts
         self.schErr = self.fobj.src_NchErr
         self.bchErr = self.fobj.bkg_NchErr
-        self.mchCounts = list(map(lambda x, y: x * y, self.fobj.mo_NchRate, self.sexpo))
+        self.mchCounts = list(map(lambda x, y: x * y, self.fobj.mo_NchRate, self.seff))
 
         self.chIndex_ = self.fobj.rsp_chIndex
         self.chMin_ = self.fobj.rsp_chMin
@@ -194,11 +194,11 @@ class Plot(object):
         self.chWidth = [ch[index] for ch, index in zip(self.chWidth_, self.NchIndex)]
         self.chCenter = [ch[index] for ch, index in zip(self.chCenter_, self.NchIndex)]
 
-        self.schRate = list(map(lambda x, y: x / y, self.schCounts, self.sexpo))
-        self.bchRate = list(map(lambda x, y: x / y, self.bchCounts, self.bexpo))
+        self.schRate = list(map(lambda x, y: x / y, self.schCounts, self.seff))
+        self.bchRate = list(map(lambda x, y: x / y, self.bchCounts, self.beff))
         self.chNetRate = list(map(lambda x, y: x - y, self.schRate, self.bchRate))
         self.chNetRateErr = list(map(lambda se, be, ts, tb: np.sqrt((se/ts)**2 + (be/tb)**2),
-                                     self.schErr, self.bchErr, self.sexpo, self.bexpo))
+                                     self.schErr, self.bchErr, self.seff, self.beff))
         self.mchRate = self.fobj.mo_NchRate
 
         self.schCE = list(map(lambda x, y: x / y, self.schRate, self.chWidth))
@@ -220,7 +220,7 @@ class Plot(object):
 
         for i in range(self.nspec):
             s, b, berr, m = self.schCounts[i], self.bchCounts[i], self.bchErr[i], self.mchCounts[i]
-            ts_, tb_ = self.sexpo[i], self.bexpo[i]
+            ts_, tb_ = self.seff[i], self.beff[i]
             ec = list(zip(self.chIndex[i], self.chMin[i], self.chMax[i], self.chWidth[i]))
 
             min_sigma = self.rebin_dict[self.spec_exprs[i]]['min_sigma']
@@ -241,9 +241,9 @@ class Plot(object):
             self.chReCenter.append(np.array([np.sqrt(cbin[1] * cbin[2]) for cbin in newec]))
             self.chReBins.append(np.array([[cbin[1], cbin[2]] for cbin in newec]))
 
-        self.schReRate = list(map(lambda x, y: x / y, self.schReCounts, self.sexpo))
-        self.bchReRate = list(map(lambda x, y: x / y, self.bchReCounts, self.bexpo))
-        self.mchReRate = list(map(lambda x, y: x / y, self.mchReCounts, self.sexpo))
+        self.schReRate = list(map(lambda x, y: x / y, self.schReCounts, self.seff))
+        self.bchReRate = list(map(lambda x, y: x / y, self.bchReCounts, self.beff))
+        self.mchReRate = list(map(lambda x, y: x / y, self.mchReCounts, self.seff))
 
         self.schReCE = list(map(lambda x, y: x / y, self.schReRate, self.chReWidth))
         self.bchReCE = list(map(lambda x, y: x / y, self.bchReRate, self.chReWidth))
@@ -260,7 +260,7 @@ class Plot(object):
         elif err_type == 'poiss-3':
             self.schReErr = list(map(lambda x: (1+np.sqrt(x+0.75)+np.sqrt(x-0.25))/2, self.schReCounts))
         self.chReNetCEErr = list(map(lambda se, be, ts, tb, w: np.sqrt((se/ts)**2 + (be/tb)**2)/w, self.schReErr,
-                                     self.bchReErr, self.sexpo, self.bexpo, self.chReWidth))
+                                     self.bchReErr, self.seff, self.beff, self.chReWidth))
         self.scalRes = list(map(lambda ni, mi, nei: (ni - mi) / nei, self.chReNetCE, self.mchReCE, self.chReNetCEErr))
 
         if save:
@@ -276,10 +276,10 @@ class Plot(object):
             json.dump({ex: val for ex, val in zip(self.spec_exprs, self.mchCounts)}, 
                     open(self.savepath + 'mchCounts.json', 'w'), indent=4, cls=JsonEncoder)
             
-            json.dump({ex: val for ex, val in zip(self.spec_exprs, self.sexpo)}, 
-                    open(self.savepath + 'sexpo.json', 'w'), indent=4, cls=JsonEncoder)
-            json.dump({ex: val for ex, val in zip(self.spec_exprs, self.bexpo)}, 
-                    open(self.savepath + 'bexpo.json', 'w'), indent=4, cls=JsonEncoder)
+            json.dump({ex: val for ex, val in zip(self.spec_exprs, self.seff)}, 
+                    open(self.savepath + 'seff.json', 'w'), indent=4, cls=JsonEncoder)
+            json.dump({ex: val for ex, val in zip(self.spec_exprs, self.beff)}, 
+                    open(self.savepath + 'beff.json', 'w'), indent=4, cls=JsonEncoder)
             
             json.dump({ex: val for ex, val in zip(self.spec_exprs, self.schRate)}, 
                     open(self.savepath + 'schRate.json', 'w'), indent=4, cls=JsonEncoder)

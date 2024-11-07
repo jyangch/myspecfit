@@ -255,13 +255,43 @@ def oper_model(expr, mdicts):
     return mode
 
 
-def flag_grouping(s, b, berr, ts, tb, min_sigma=None, min_evt=None, max_bin=None, stat=None, ini_flag=None):
+def flag_grouping(
+    s, 
+    b, 
+    berr, 
+    ts, 
+    tb, 
+    ss, 
+    sb, 
+    min_sigma=None, 
+    min_evt=None, 
+    max_bin=None, 
+    stat=None, 
+    ini_flag=None
+    ):
+    
+    # grouping flag:
+    # grpg = 0 if the channel is not allowed to group, including the not qualified noticed channels
+    # grpg = +1 if the channel is the start of a new bin
+    # grpg = -1 if the channel is part of a continuing bin
+    
     if ini_flag is None:
-        ini_flag = np.ones(len(s)).astype(int)
+        ini_flag = [1] * len(s)
+        
+    if min_sigma is None:
+        min_sigma = -np.inf
+    
+    if min_evt is None:
+        min_evt = 0
+        
+    if max_bin is None:
+        max_bin = np.inf
+        
+    alpha = ts * ss / (tb * sb)
 
     flag, gs = [], []
     nowbin = False
-    sp_, bp, bperr, cp = 0, 0, 0, 0
+    cs, cb, cberr, cp = 0, 0, 0, 0
     for i in range(len(s)):
         if ini_flag[i] != 1:
             flag.append(0)
@@ -271,7 +301,7 @@ def flag_grouping(s, b, berr, ts, tb, min_sigma=None, min_evt=None, max_bin=None
                 else:
                     flag[gs[-1]] = -1
             nowbin = False
-            sp_, bp, cp = 0, 0, 0
+            cs, cb, cberr, cp = 0, 0, 0, 0
         else:
             if not nowbin:
                 flag.append(1)
@@ -284,86 +314,31 @@ def flag_grouping(s, b, berr, ts, tb, min_sigma=None, min_evt=None, max_bin=None
             si = s[i]
             bi = b[i]
             bierr = berr[i]
-            sp_ += si
-            bp += bi
-            bperr = np.sqrt(bperr ** 2 + bierr ** 2)
-
-            if max_bin is None:
-
-                if min_sigma is not None:
-
-                    if stat is None: stat = 'pgtat'
-                    if stat == 'cstat':
-                        if (bp < 0 or sp_ < 0) and (bp != sp_):
-                            sigma = 0
-                        else:
-                            sigma = ppsig(sp_, bp, ts / tb)
-                    elif stat == 'pgstat':
-                        if sp_ <= 0:
-                            sigma = 0
-                        elif bperr == 0:
-                            sigma = 0
-                        else:
-                            sigma = pgsig(sp_, bp, bperr)
-                    else:
-                        raise KeyError('It is unavailable kind of stat!')
-
-                    if sigma >= min_sigma:
-                        nowbin = False
-                        sp_, bp, bperr = 0, 0, 0
-                    else:
-                        nowbin = True
-
-                elif min_evt is not None:
-                    evt = sp_ - bp
-
-                    if evt >= min_evt:
-                        nowbin = False
-                        sp_, bp, bperr = 0, 0, 0
-                    else:
-                        nowbin = True
-
-            else:
-
-                if min_sigma is not None:
-
-                    if stat is None: stat = 'pgstat'
-                    if stat == 'cstat':
-                        if (bp < 0 or sp_ < 0) and (bp != sp_):
-                            sigma = 0
-                        else:
-                            sigma = ppsig(sp_, bp, ts / tb)
-                    elif stat == 'pgstat':
-                        if sp_ <= 0:
-                            sigma = 0
-                        elif bperr == 0:
-                            sigma = 0
-                        else:
-                            sigma = pgsig(sp_, bp, bperr)
-                    else:
-                        raise KeyError('It is unavailable kind of stat!')
-
-                    if sigma >= min_sigma or cp == max_bin:
-                        nowbin = False
-                        sp_, bp, bperr, cp = 0, 0, 0, 0
-                    else:
-                        nowbin = True
-
-                elif min_evt is not None:
-                    evt = sp_ - bp
-
-                    if evt >= min_evt or cp == max_bin:
-                        nowbin = False
-                        sp_, bp, bperr, cp = 0, 0, 0, 0
-                    else:
-                        nowbin = True
-
+            cs += si
+            cb += bi
+            cberr = np.sqrt(cberr ** 2 + bierr ** 2)
+            
+            if stat is None: stat = 'pgstat'
+            if stat == 'cstat':
+                if (cb < 0 or cs < 0) and (cb != cs):
+                    sigma = 0
                 else:
-                    if cp == max_bin:
-                        nowbin = False
-                        sp_, bp, bperr, cp = 0, 0, 0, 0
-                    else:
-                        nowbin = True
+                    sigma = ppsig(cs, cb, alpha)
+            elif stat == 'pgstat':
+                if cs <= 0 or cberr == 0:
+                    sigma = 0
+                else:
+                    sigma = pgsig(cs, cb * alpha, cberr * alpha)
+            else:
+                raise AttributeError(f'unsupported stat: {stat}')
+            
+            evt = cs - cb * alpha
+            
+            if ((sigma >= min_sigma) and (evt >= min_evt)) or cp == max_bin:
+                nowbin = False
+                cs, cb, cberr, cp = 0, 0, 0, 0
+            else:
+                nowbin = True
 
             if nowbin and i == (len(s) - 1):
                 if len(gs) < 2:

@@ -72,6 +72,8 @@ class Source(object):
                 self.SrcBackSc = float(self.specExt.header['BACKSCAL'])
             except KeyError:
                 self.SrcBackSc = 1
+                
+        self.SrcEff = self.SrcExpo
 
         src_hdu.close()
 

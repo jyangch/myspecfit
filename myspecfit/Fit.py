@@ -78,12 +78,12 @@ class Fit(object):
         self.src_chIndex = [src.ChanIndex for src in self.srcs]
         self.src_chCounts = [src.SrcCounts for src in self.srcs]
         self.src_chErr = [src.SrcErr for src in self.srcs]
-        self.src_expo_ = [src.SrcExpo for src in self.srcs]
+        self.src_eff_ = [src.SrcEff for src in self.srcs]
 
         self.bkg_chIndex = [bkg.ChanIndex for bkg in self.bkgs]
         self.bkg_chCounts = [bkg.BkgCounts for bkg in self.bkgs]
         self.bkg_chErr_ = [bkg.BkgErr for bkg in self.bkgs]
-        self.bkg_expo_ = [bkg.BkgExpo for bkg in self.bkgs]
+        self.bkg_eff_ = [bkg.BkgEff for bkg in self.bkgs]
 
         self.rsp_chIndex = [rsp.ChanIndex for rsp in self.rsps]
         self.rsp_chMin = [np.array(rsp.ChanMin) for rsp in self.rsps]
@@ -311,15 +311,15 @@ class Fit(object):
         if True in [np.isnan(m).any() for m in self.mo_NchRate]: return -np.inf
         if True in [np.isinf(m).any() for m in self.mo_NchRate]: return -np.inf
 
-        self.src_expo = [po * self.spec_pdicts['sf@%s'%ex].value for po, ex in zip(self.src_expo_, self.spec_exprs)]
-        self.bkg_expo = [po * self.spec_pdicts['bf@%s'%ex].value for po, ex in zip(self.bkg_expo_, self.spec_exprs)]
+        self.src_eff = [po * self.spec_pdicts['sf@%s'%ex].value for po, ex in zip(self.src_eff_, self.spec_exprs)]
+        self.bkg_eff = [po * self.spec_pdicts['bf@%s'%ex].value for po, ex in zip(self.bkg_eff_, self.spec_exprs)]
 
         f = lambda bi, bierr, ex: np.sqrt(bierr ** 2 + self.spec_pdicts['bvf@%s'%ex].value ** 2 * bi ** 2)
         self.bkg_NchErr = list(map(f, self.bkg_NchCounts, self.bkg_NchErr_, self.spec_exprs))
 
         self.stat_list = np.array(list(map(lambda s, b, m, ts, tb, berr, func: func(s, b, m, ts, tb, berr),
-                                           self.src_NchCounts, self.bkg_NchCounts, self.mo_NchRate, self.src_expo,
-                                           self.bkg_expo, self.bkg_NchErr, self.stat_funcs))).astype(float)
+                                           self.src_NchCounts, self.bkg_NchCounts, self.mo_NchRate, self.src_eff,
+                                           self.bkg_eff, self.bkg_NchErr, self.stat_funcs))).astype(float)
 
         self.stat = np.sum([s * w for s, w in zip(self.stat_list, self.spec_weights)])
 
@@ -386,15 +386,15 @@ class Fit(object):
         if True in [np.isnan(m).any() for m in self.mo_NchRate]: return -np.inf
         if True in [np.isinf(m).any() for m in self.mo_NchRate]: return -np.inf
 
-        self.src_expo = [po * self.spec_pdicts['sf@%s'%ex].value for po, ex in zip(self.src_expo_, self.spec_exprs)]
-        self.bkg_expo = [po * self.spec_pdicts['bf@%s'%ex].value for po, ex in zip(self.bkg_expo_, self.spec_exprs)]
+        self.src_eff = [po * self.spec_pdicts['sf@%s'%ex].value for po, ex in zip(self.src_eff_, self.spec_exprs)]
+        self.bkg_eff = [po * self.spec_pdicts['bf@%s'%ex].value for po, ex in zip(self.bkg_eff_, self.spec_exprs)]
 
         f = lambda bi, bierr, ex: np.sqrt(bierr ** 2 + self.spec_pdicts['bvf@%s'%ex].value ** 2 * bi ** 2)
         self.bkg_NchErr = list(map(f, self.bkg_NchCounts, self.bkg_NchErr_, self.spec_exprs))
 
         self.stat_list = np.array(list(map(lambda s, b, m, ts, tb, berr, func: func(s, b, m, ts, tb, berr),
-                                           self.src_NchCounts, self.bkg_NchCounts, self.mo_NchRate, self.src_expo,
-                                           self.bkg_expo, self.bkg_NchErr, self.stat_funcs))).astype(float)
+                                           self.src_NchCounts, self.bkg_NchCounts, self.mo_NchRate, self.src_eff,
+                                           self.bkg_eff, self.bkg_NchErr, self.stat_funcs))).astype(float)
 
         self.stat = np.sum([s * w for s, w in zip(self.stat_list, self.spec_weights)])
 

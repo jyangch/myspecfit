@@ -354,6 +354,11 @@ class Spectrum(object):
     def scaling(self):
         for (bkg, src_sc, bkg_sc) in zip(self.bkg_info, self.src_backsc, self.bkg_backsc):
             bkg.scaling(src_sc, bkg_sc)
+            
+        self.src_eff = [src.SrcEff for src in self.src_info]
+        self.bkg_eff = [bkg.BkgEff for bkg in self.bkg_info]
+        
+        self.alpha = [se / be for se, be in zip(self.src_eff, self.bkg_eff)]
 
         print('+-----------------------------------------------+')
         print(' %-17s%-17s%-17s' % ('Spec', 'SrcScal', 'BkgScal'))
@@ -389,7 +394,8 @@ class Spectrum(object):
                 gr_ = {'min_evt': None, 'min_sigma': None, 'max_bin': None}
                 gr_.update(gr)
                 ini_flag = np.array(rsp.Qualified_Notice_ID).astype(int)
-                grpg = flag_grouping(src.SrcCounts, bkg.BkgCounts, bkg.BkgErr, src.SrcExpo, bkg.BkgExpo,
+                grpg = flag_grouping(src.SrcCounts, bkg.BkgCounts, bkg.BkgErr, src.SrcExpo, bkg.BkgExpo, 
+                                     src.SrcBackSc, bkg.BkgBackSc, 
                                      min_evt=gr_['min_evt'], min_sigma=gr_['min_sigma'],
                                      max_bin=gr_['max_bin'], stat=self.stats[i], ini_flag=ini_flag)
                 src.grouping(grpg)

@@ -120,9 +120,7 @@ class Background(object):
 
 
     def scaling(self, src_sc, bkg_sc):
-        sc = src_sc / bkg_sc
-        self.BkgCounts = self.BkgCounts * sc
-        self.BkgErr = self.BkgErr * sc
+        self.BkgEff = self.BkgExpo * bkg_sc / src_sc
 
 
     def grouping(self, Grpg):
