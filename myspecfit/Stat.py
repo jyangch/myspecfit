@@ -18,7 +18,7 @@ class Stat(object):
 
 
     def set_stat(self, expr):
-        if expr == 'chi^2': return self.chi2
+        if expr == 'chi2': return self.chi2
         elif expr == 'cstat': return self.cstat
         elif expr == 'pgstat': return self.pgstat
         elif expr == 'pgfstat': return self.pgfstat
@@ -38,7 +38,7 @@ class Stat(object):
 
 
     @staticmethod
-    def chi2(S, B, M, ts, serr, berr):
+    def chi2(S, B, M, ts, tb, serr, berr):
         # S, B are the number of counts respectively in the source and background spectrum.
         # M is the expected rate of events from the source model.
         # ts is the exposure for the source.
@@ -51,17 +51,18 @@ class Stat(object):
             mi = M[i]
             sierr = serr[i]
             bierr = berr[i]
+            
+            if tb != 0:
+                bi = bi / tb * ts
+                bierr = bierr / tb * ts
+                
             tierr = np.sqrt(sierr ** 2 + bierr ** 2)
-
-            if tierr == 0.0:
-                stat += (mi * ts) ** 2
-            else:
-                stat += (si - bi - mi * ts) ** 2 / tierr ** 2
+            stat += (si - bi - mi * ts) ** 2 / tierr ** 2
         return stat
 
 
     @staticmethod
-    def cstat(S, B, M, ts, tb, berr):
+    def cstat(S, B, M, ts, tb, serr, berr):
         # S, B are the number of counts respectively in the source and background spectrum.
         # M is the expected rate of events from the source model.
         # ts and tb are the exposure for the source and background spectrum.
@@ -107,7 +108,7 @@ class Stat(object):
 
 
     @staticmethod
-    def pgstat(S, B, M, ts, tb, berr):
+    def pgstat(S, B, M, ts, tb, serr, berr):
         # S, B are the number of counts respectively in the source and background spectrum.
         # M is the expected rate of events from the source model.
         # ts and tb are the exposure for the source and background spectrum.
@@ -159,7 +160,7 @@ class Stat(object):
 
 
     @staticmethod
-    def pgfstat(S, B, M, ts, tb, berr):
+    def pgfstat(S, B, M, ts, tb, serr, berr):
         # S, B are the number of counts respectively in the source and background spectrum.
         # M is the expected rate of events from the source model.
         # ts and tb are the exposure for the source and background spectrum.

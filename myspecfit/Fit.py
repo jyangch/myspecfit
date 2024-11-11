@@ -317,9 +317,9 @@ class Fit(object):
         f = lambda bi, bierr, ex: np.sqrt(bierr ** 2 + self.spec_pdicts['bvf@%s'%ex].value ** 2 * bi ** 2)
         self.bkg_NchErr = list(map(f, self.bkg_NchCounts, self.bkg_NchErr_, self.spec_exprs))
 
-        self.stat_list = np.array(list(map(lambda s, b, m, ts, tb, berr, func: func(s, b, m, ts, tb, berr),
+        self.stat_list = np.array(list(map(lambda s, b, m, ts, tb, serr, berr, func: func(s, b, m, ts, tb, serr, berr),
                                            self.src_NchCounts, self.bkg_NchCounts, self.mo_NchRate, self.src_eff,
-                                           self.bkg_eff, self.bkg_NchErr, self.stat_funcs))).astype(float)
+                                           self.bkg_eff, self.src_NchErr, self.bkg_NchErr, self.stat_funcs))).astype(float)
 
         self.stat = np.sum([s * w for s, w in zip(self.stat_list, self.spec_weights)])
 
